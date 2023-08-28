@@ -22,7 +22,13 @@ func main() {
 	//target2 := 6
 	searchRange := Study.SearchRange(nums1, target1)
 	fmt.Println("The index is:", searchRange)
+
+	// 69. x 的平方根
 	x := 8
 	sqrt := Study.MySqrt(x)
 	fmt.Println("The index is:", sqrt)
+
+	// 367. 有效的完全平方数
+	Isbool := Study.IsPerfectSquare(14)
+	fmt.Println("The bool is:", Isbool)
 }
