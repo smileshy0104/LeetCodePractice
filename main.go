@@ -1,7 +1,8 @@
 package main
 
 import (
-	Array "LeetCode/Practice"
+	Array "LeetCode/Practice/Array"
+	TwoPointer "LeetCode/Practice/TwoPoint"
 	"fmt"
 )
 
@@ -33,7 +34,21 @@ func array() {
 	Isbool := Array.IsPerfectSquare(14)
 	fmt.Println("The bool is:", Isbool)
 }
+
+func twoPointer() {
+	nums0 := []int{0, 1, 2, 2, 3, 0, 4, 2}
+	val0 := 2
+	length := TwoPointer.RemoveElement(nums0, val0)
+	fmt.Println("the length is:", length)
+
+	nums := []int{3, 2, 2, 3}
+	val := 3
+	length0 := TwoPointer.RemoveElement(nums, val)
+	fmt.Println("the length is:", length0)
+}
 func main() {
 	//关于数组的函数
 	array()
+	//关于双指针的函数
+	twoPointer()
 }
