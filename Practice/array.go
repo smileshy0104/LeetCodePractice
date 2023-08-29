@@ -232,18 +232,22 @@ func IsPerfectSquare(num int) bool {
  * 核心思想: 要找某个值, 则查找时遇到该值时, 当前指针(例如right指针)要错过它, 让另外一个指针(left指针)跨过他(体现在left <= right中的=号), 则找到了
  */
 
+// 704. 二分查找
 // （版本一）左闭右闭区间
 func BinarySearch1(nums []int, target int) int {
 	left := 0
+	// 定义target在左闭右闭的区间⾥，[left, right]
 	right := len(nums) - 1
+	// 当left==right，区间[left, right]依然有效，所以⽤ <=
 	for left <= right {
+		// 防⽌溢出 等同于(left + right)/2
 		middle := left + (right-left)/2
 		if nums[middle] == target {
-			return middle
+			return middle // 数组中找到⽬标值，直接返回下标
 		} else if nums[middle] > target {
-			right = middle - 1
+			right = middle - 1 // target 在左区间，所以[left, middle - 1]
 		} else {
-			left = middle + 1
+			left = middle + 1 // target 在右区间，所以[middle + 1, right]
 		}
 	}
 	return -1
@@ -254,13 +258,13 @@ func BinarySearch2(nums []int, target int) int {
 	left := 0
 	right := len(nums) - 1
 	for left < right { //此处不同
-		middle := left + (right-left)/2
+		middle := left + (right-left)/2 // 因为left == right的时候，在[left, right)是⽆效的空间，所以使⽤ <
 		if nums[middle] == target {
-			return middle
+			return middle // 数组中找到⽬标值，直接返回下标
 		} else if nums[middle] > target {
-			right = middle
+			right = middle // target 在左区间，在[left, middle)中
 		} else {
-			left = middle + 1
+			left = middle + 1 // target 在右区间，在[middle + 1, right)中
 		}
 	}
 	return -1
