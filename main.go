@@ -45,6 +45,11 @@ func twoPointer() {
 	val := 3
 	length0 := TwoPointer.RemoveElement(nums, val)
 	fmt.Println("the length is:", length0)
+
+	s := "ab#c"
+	t := "ad#c"
+	Isbool := TwoPointer.BackspaceCompare(s, t)
+	fmt.Println("The bool is:", Isbool)
 }
 func main() {
 	//关于数组的函数
