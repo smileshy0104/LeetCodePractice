@@ -50,6 +50,10 @@ func twoPointer() {
 	t := "ad#c"
 	Isbool := TwoPointer.BackspaceCompare(s, t)
 	fmt.Println("The bool is:", Isbool)
+
+	nums1 := []int{-4, -1, 0, 3, 10}
+	sored := TwoPointer.SortedSquares1(nums1)
+	fmt.Println("The sored is:", sored)
 }
 func main() {
 	//关于数组的函数
