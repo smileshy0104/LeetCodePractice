@@ -36,24 +36,38 @@ func array() {
 }
 
 func twoPointer() {
+	// 27. 移除元素（快慢指针）
 	nums0 := []int{0, 1, 2, 2, 3, 0, 4, 2}
 	val0 := 2
-	length := TwoPointer.RemoveElement(nums0, val0)
+	length := TwoPointer.RemoveElement1(nums0, val0)
 	fmt.Println("the length is:", length)
 
+	// 27. 移除元素（前后指针）
 	nums := []int{3, 2, 2, 3}
 	val := 3
 	length0 := TwoPointer.RemoveElement(nums, val)
 	fmt.Println("the length is:", length0)
 
+	// 844. 比较含退格的字符串
 	s := "ab#c"
 	t := "ad#c"
 	Isbool := TwoPointer.BackspaceCompare(s, t)
 	fmt.Println("The bool is:", Isbool)
 
+	// 977. 有序数组的平方
 	nums1 := []int{-4, -1, 0, 3, 10}
 	sored := TwoPointer.SortedSquares1(nums1)
 	fmt.Println("The sored is:", sored)
+
+	// 59、螺旋矩阵二
+	matrix := TwoPointer.GenerateMatrix(3)
+	fmt.Println("The Matrix is:", matrix)
+
+	// 54、螺旋矩阵一
+	matrixOrder := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+	order := TwoPointer.SpiralOrder(matrixOrder)
+	fmt.Println("The Order is:", order)
+
 }
 func main() {
 	//关于数组的函数
