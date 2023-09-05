@@ -63,6 +63,8 @@ func RemoveElement1(nums []int, val int) int {
 	fmt.Println("the nums is:", nums)
 	return result
 }
+
+// 26. 删除有序数组中的重复项
 func RemoveDuplicates(nums []int) int {
 	if len(nums) == 0 {
 		return 0
@@ -75,6 +77,30 @@ func RemoveDuplicates(nums []int) int {
 		}
 	}
 	return left + 1
+}
+
+// 283. 移动零
+func MoveZeroes(nums []int) {
+	// 使用双指针方法
+	// left 指针用于指向当前非零元素应该存放的位置
+	// right 指针用于遍历数组元素
+
+	left := 0
+
+	// 遍历数组
+	for right := 0; right < len(nums); right++ {
+		// 如果当前元素不为零，则将其移动到 left 指针所指的位置，并将 left 指针右移
+		if nums[right] != 0 {
+			nums[left] = nums[right]
+			left++
+		}
+	}
+
+	// 将剩余的位置填充为零
+	for left < len(nums) {
+		nums[left] = 0
+		left++
+	}
 }
 
 /*
