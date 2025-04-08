@@ -1,8 +1,18 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
+
+func main() {
+	// 调用 mySqrt 函数并打印结果。
+	result := mySqrt(4)
+	fmt.Println(result) // 输出结果
+	// 调用 mySqrt 函数并打印结果。
+	result = mySqrt(8)
+	fmt.Println(result) // 输出结果
+	// 调用 mySqrt 函数并打印结果。
+	result = mySqrt(0)
+	fmt.Println(result) // 输出结果
+}
 
 // mySqrt 函数计算并返回一个整数的平方根。
 // 参数 x: 需要计算平方根的整数。
@@ -21,7 +31,7 @@ func mySqrt(x int) int {
 	// 当左指针小于等于右指针时，执行二分查找。
 	for left <= right {
 		// 计算中间值，避免整数溢出。
-		mid := left + (right-left)/2
+		mid := (left + right) / 2
 		// 如果中间值的平方等于x，找到平方根，返回中间值。
 		if mid*mid == x {
 			return mid
@@ -35,11 +45,4 @@ func mySqrt(x int) int {
 	}
 	// 返回最接近平方根的值。
 	return right
-}
-
-// TestName2 测试 mySqrt 函数。
-func main() {
-	// 调用 mySqrt 函数并打印结果。
-	result := mySqrt(8)
-	fmt.Println(result) // 输出结果
 }
