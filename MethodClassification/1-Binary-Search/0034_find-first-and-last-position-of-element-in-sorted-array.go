@@ -1,8 +1,23 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
+
+func main() {
+	nums := []int{5, 7, 7, 8, 8, 10}    // 定义一个已排序的数组
+	target := 8                         // 定义目标值
+	result := searchRange(nums, target) // 调用函数获取目标值的索引范围
+	fmt.Println(result)                 // 输出结果
+
+	nums = []int{5, 7, 7, 8, 8, 10}    // 定义一个已排序的数组
+	target = 6                         // 定义目标值
+	result = searchRange(nums, target) // 调用函数获取目标值的索引范围
+	fmt.Println(result)                // 输出结果
+
+	nums = []int{}                     // 定义一个已排序的数组
+	target = 0                         // 定义目标值
+	result = searchRange(nums, target) // 调用函数获取目标值的索引范围
+	fmt.Println(result)                // 输出结果
+}
 
 // searchRange 函数旨在找出目标值在整数数组中出现的最左侧和最右侧的位置。
 // 如果目标值不存在于数组中，则返回[-1, -1]。
@@ -64,13 +79,4 @@ func findLast(nums []int, target int) int {
 		}
 	}
 	return result
-}
-
-// TestName1 测试函数用于验证searchRange函数的正确性。
-// 它定义了一个已排序的数组和一个目标值，然后调用searchRange函数，并打印出目标值在数组中的索引范围。
-func main() {
-	nums := []int{5, 7, 7, 8, 8, 10}    // 定义一个已排序的数组
-	target := 8                         // 定义目标值
-	result := searchRange(nums, target) // 调用函数获取目标值的索引范围
-	fmt.Println(result)                 // 输出结果
 }
