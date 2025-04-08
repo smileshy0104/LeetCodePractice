@@ -12,7 +12,7 @@ func main() {
 	// 测试用例2
 	nums = []int{-1, 0, 3, 5, 9, 12}
 	target = 2
-	result = search(nums, target)
+	result = search2(nums, target)
 	fmt.Println(result)
 }
 
