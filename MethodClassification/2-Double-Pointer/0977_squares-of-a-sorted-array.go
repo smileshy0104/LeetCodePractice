@@ -20,6 +20,7 @@ func main() {
 	fmt.Println(squares)
 }
 
+// 方法一：直接排序
 // sortedSquares函数接收一个整数数组nums，计算每个元素的平方，并保持数组有序。
 // 它首先对原数组元素进行平方计算，然后对结果进行排序。
 // 参数: nums []int - 输入的整数数组
@@ -32,6 +33,7 @@ func sortedSquares(nums []int) []int {
 	return nums
 }
 
+// 方法二：双指针法
 // sortedSquares1函数接收一个整数数组nums，计算每个元素的平方，并保持数组有序。
 // 与sortedSquares不同，该函数使用双指针法来避免排序，从而提高效率。
 // 参数: nums []int - 输入的整数数组
