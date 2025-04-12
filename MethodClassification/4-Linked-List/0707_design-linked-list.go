@@ -2,15 +2,15 @@ package main
 
 import "fmt"
 
-// MyLinkedList 实现了一个单链表的数据结构
-type MyLinkedList struct {
-	head *ListNode // 头节点指针
-}
-
 // ListNode 定义链表节点
 type ListNode struct {
 	Val  int       // 节点存储的值
 	Next *ListNode // 指向下一个节点的指针
+}
+
+// MyLinkedList 实现了一个单链表的数据结构
+type MyLinkedList struct {
+	head *ListNode // 头节点指针
 }
 
 // Constructor 创建并返回一个新的链表实例
@@ -18,7 +18,7 @@ func Constructor() MyLinkedList {
 	return MyLinkedList{}
 }
 
-// Get 获取链表中第index个节点的值。如果索引无效，则返回-1
+// Get 获取链表中第 index 个节点的值。如果索引无效，则返回 -1
 func (this *MyLinkedList) Get(index int) int {
 	if index < 0 {
 		return -1
@@ -36,22 +36,17 @@ func (this *MyLinkedList) Get(index int) int {
 	return current.Val // 返回当前节点的值
 }
 
-// AddAtHead 在链表的第一个元素之前添加一个值为val的新节点
+// AddAtHead 在链表的第一个元素之前添加一个值为 val 的新节点
 func (this *MyLinkedList) AddAtHead(val int) {
-	// 如果链表为空，则将新节点作为头节点
-	if this.head == nil {
-		this.head = &ListNode{Val: val}
-		return
-	}
-	// 将新节点链接到链表头部
-	this.head = &ListNode{Val: val, Next: this.head}
+	newNode := &ListNode{Val: val, Next: this.head}
+	this.head = newNode
 }
 
-// AddAtTail 在链表的最后一个元素之后添加一个值为val的新节点
+// AddAtTail 在链表的最后一个元素之后添加一个值为 val 的新节点
 func (this *MyLinkedList) AddAtTail(val int) {
-	// 如果链表为空，则将新节点作为头节点
+	newNode := &ListNode{Val: val}
 	if this.head == nil {
-		this.head = &ListNode{Val: val}
+		this.head = newNode
 		return
 	}
 	current := this.head
@@ -60,72 +55,64 @@ func (this *MyLinkedList) AddAtTail(val int) {
 		current = current.Next
 	}
 	// 将新节点链接到链表末尾
-	current.Next = &ListNode{Val: val}
+	current.Next = newNode
 }
 
-// AddAtIndex 在链表中的第index个节点之前添加一个值为val的新节点
+// AddAtIndex 在链表中的第 index 个节点之前添加一个值为 val 的新节点
 func (this *MyLinkedList) AddAtIndex(index int, val int) {
-	// 如果索引无效，则返回
 	if index < 0 {
 		return
 	}
+	newNode := &ListNode{Val: val}
 	// 如果索引为0，则将新节点添加到链表头部
 	if index == 0 {
-		this.AddAtHead(val)
+		newNode.Next = this.head
+		this.head = newNode
 		return
 	}
-	// 遍历链表，找到第index-1个节点
+	current := this.head
+	// 遍历链表，找到第 index-1 个节点
 	for i := 0; i < index-1; i++ {
-		if this.head == nil {
+		if current == nil {
 			return
 		}
-		// 继续遍历下一个节点
-		this.head = this.head.Next
+		current = current.Next
 	}
 	// 如果当前节点为空，则返回
-	if this.head == nil {
+	if current == nil {
 		return
 	}
 	// 将新节点链接到当前节点之后
-	if this.head.Next == nil {
-		// 如果当前节点的下一个节点为空，则将新节点链接到当前节点之后
-		this.head.Next = &ListNode{Val: val}
-	} else {
-		// 将新节点链接到当前节点之后
-		next := this.head.Next
-		this.head.Next = &ListNode{Val: val, Next: next}
-	}
+	newNode.Next = current.Next
+	current.Next = newNode
 }
 
-// DeleteAtIndex 删除链表中的第index个节点
+// DeleteAtIndex 删除链表中的第 index 个节点
 func (this *MyLinkedList) DeleteAtIndex(index int) {
-	// 如果索引无效，则返回
 	if index < 0 {
 		return
 	}
 	// 如果索引为0，则将头节点指向下一个节点
 	if index == 0 {
-		this.head = this.head.Next
+		if this.head != nil {
+			this.head = this.head.Next
+		}
 		return
 	}
-	// 遍历链表，找到第index-1个节点
+	current := this.head
+	// 遍历链表，找到第 index-1 个节点
 	for i := 0; i < index-1; i++ {
-		if this.head == nil {
+		if current == nil {
 			return
 		}
-		this.head = this.head.Next
+		current = current.Next
 	}
-	// 如果当前节点为空，则返回
-	if this.head == nil {
+	// 如果当前节点为空或当前节点的下一个节点为空，则返回
+	if current == nil || current.Next == nil {
 		return
 	}
-	if this.head.Next == nil {
-		// 直接设置当前节点为空
-		this.head = nil
-	} else {
-		// 将当前节点的下一个节点链接到当前节点的下下个节点
-		this.head.Next = this.head.Next.Next
-	}
+	// 将当前节点的下一个节点链接到当前节点的下下个节点
+	current.Next = current.Next.Next
 }
 
 // Print 打印链表
