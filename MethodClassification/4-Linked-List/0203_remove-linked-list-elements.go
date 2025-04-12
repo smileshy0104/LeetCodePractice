@@ -25,15 +25,8 @@ type ListNode struct {
 	Next *ListNode // 下一个节点
 }
 
+// 方法一：迭代移除链表中所有值为 val 的节点
 // removeElements 移除链表中所有值为 val 的节点
-// 参数:
-//
-//	head: 链表头节点
-//	val: 需要移除的节点值
-//
-// 返回值:
-//
-//	移除指定值后的新链表头节点
 func removeElements(head *ListNode, val int) *ListNode {
 	// 如果链表为空，则直接返回
 	if head == nil {
@@ -54,6 +47,32 @@ func removeElements(head *ListNode, val int) *ListNode {
 			current = current.Next
 		}
 	}
+	return head
+}
+
+// 方法二：递归移除链表中所有值为 val 的节点
+// removeElements0 递归地移除链表中所有值为 val 的元素。
+// 这个函数名称暗示它是 removeElements 函数的一种变体或版本。
+// 参数 head 是链表的头节点，val 是需要移除的值。
+// 返回值是移除指定值后的链表的头节点。
+func removeElements0(head *ListNode, val int) *ListNode {
+	// 检查链表是否为空，如果为空则直接返回 nil，表示没有节点需要移除。
+	if head == nil {
+		return nil
+	}
+
+	// 递归调用 removeElements0 来处理除了头节点之外的链表部分。
+	// 这行代码的目的是将链表中的每个节点都应用相同的移除逻辑。
+	head.Next = removeElements0(head.Next, val)
+
+	// 检查当前头节点的值是否等于需要移除的值 val。
+	// 如果相等，则返回头节点的下一个节点，从而将头节点移出链表。
+	if head.Val == val {
+		return head.Next
+	}
+
+	// 如果头节点的值不等于 val，则返回头节点。
+	// 这表示当前头节点将保留在链表中。
 	return head
 }
 
