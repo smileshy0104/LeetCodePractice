@@ -28,3 +28,23 @@ func twoSum(nums []int, target int) []int {
 	// 如果遍历结束后仍未找到符合条件的两个数，返回一个空数组
 	return []int{}
 }
+
+// twoSum0 寻找两个数，使它们的和等于目标值。
+// 参数 nums 是一个整数数组。
+// 参数 target 是需要两数之和达到的目标值。
+// 返回值是包含这两个数的索引的切片，如果不存在这样的两个数，则返回空切片。
+func twoSum0(nums []int, target int) []int {
+	// 遍历数组中的每个元素。
+	for i := 0; i < len(nums); i++ {
+		// 对当前元素之后的每个元素进行遍历。
+		for j := i + 1; j < len(nums); j++ {
+			// 检查当前的两个元素之和是否等于目标值。
+			if nums[i]+nums[j] == target {
+				// 如果找到符合条件的两个数，返回它们的索引。
+				return []int{i, j}
+			}
+		}
+	}
+	// 如果没有找到符合条件的两个数，返回空切片。
+	return []int{}
+}
